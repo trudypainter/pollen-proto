@@ -19,9 +19,9 @@ export const HeaderMenu = () => {
   // if (!isLoading) return <div> {data?.id} </div>;
   return (
     <div className="px-20 pt-10">
-      <a className="text-large font-semibold  hover:underline" href="/">
-        Pollen
-      </a>{" "}
+      <Link href="/">
+        <a className="text-large font-semibold  hover:underline">Pollen</a>{" "}
+      </Link>
       {urlArr.map((url) => (
         <span>
           {" / "}
