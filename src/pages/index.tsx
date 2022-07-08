@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 
 import { ChakraProvider } from "@chakra-ui/react";
 import HeaderMenu from "../components/HeaderMenu";
@@ -21,30 +22,25 @@ const Index: NextPage = () => {
           <div className="flex flex-wrap bg-red w-fit m-auto p-4 space-x-4">
             <div className=" w-64 bg-gray-100 p-8 text-left">
               <div className="text-l font-semibold">User Examples</div>
-              <a className="hover:underline" href="/trudy-painter">
-                Trudy Painter
-              </a>
+              <Link href="/trudy-painter">
+                <a className="hover:underline">Trudy Painter</a>
+              </Link>
+
               <br></br>
-              <a className="hover:underline" href="/omoruyi-atekha">
-                Omoruyi Atekha
-              </a>
+              <Link href="/omoruyi-atekha">
+                <a className="hover:underline">Omoruyi Atekha</a>
+              </Link>
             </div>
 
             <div className=" w-64 bg-gray-100 p-8 text-left">
               <div className="text-l font-semibold">Channel Examples</div>
-              <a
-                className="hover:underline"
-                href="/trudy-painter/things-i-like-eruhck1o7r0"
-              >
-                things i like
-              </a>
+              <Link href="/trudy-painter/things-i-like-eruhck1o7r0">
+                <a className="hover:underline">things i like</a>
+              </Link>
               <br></br>
-              <a
-                className="hover:underline"
-                href="/trudy-painter/oakleys-and-i-stand-by-it"
-              >
-                OAKLEYS AND I STAND BY IT
-              </a>
+              <Link href="/trudy-painter/oakleys-and-i-stand-by-it">
+                <a className="hover:underline">OAKLEYS AND I STAND BY IT</a>
+              </Link>
             </div>
           </div>
         </div>
