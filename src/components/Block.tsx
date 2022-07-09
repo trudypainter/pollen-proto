@@ -6,9 +6,15 @@ export const Block = (props: { block: any }) => {
   const hasImage = block.image !== undefined && block.image !== null;
   const [blockWidth, setBlockWidth] = useState(400);
 
-  if (hasImage) {
-    console.log("🟡", block);
-  } else {
+  let displayText = "";
+  if (!hasImage) {
+    console.log("🟡 no image", block);
+    if (block.base_class === "Channel") {
+      displayText = block.title;
+    } else {
+      console.log("🟢 got here");
+      displayText = block.content;
+    }
   }
 
   return (
@@ -18,7 +24,16 @@ export const Block = (props: { block: any }) => {
           <img className="w-full h-full " src={block.image.square.url} />{" "}
         </div>
       ) : (
-        <div className="p-2">Channel: {block.title} </div>
+        <div
+          className={
+            "w-full h-full p-2 " +
+            (block.base_class === "Channel"
+              ? "bg-emerald-100 flex items-center justify-center"
+              : "bg-gray-100")
+          }
+        >
+          {displayText}
+        </div>
       )}
     </div>
   );
