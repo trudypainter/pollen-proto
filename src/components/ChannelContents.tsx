@@ -35,8 +35,8 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         <div className="text-base">{props.channelObj.metadata.description}</div>
       </div>
 
-      <div className="w-full px-1/12 py-0 relative">
-        <div className="w-full py-10 flex justify-between sticky top-140">
+      <div className="w-full px-1/12 py-0 relative sticky top-0 bg-white">
+        <div className="w-full py-10 flex justify-between ">
           <div className="font-semibold text-xl">Contributions</div>
           <div className="w-48">
             <Slider
