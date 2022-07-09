@@ -70,10 +70,12 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
 
       <div
         className="grid pb-20"
-        style={{ gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))` }}
+        style={{
+          gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
+        }}
       >
         {props.contents.map((block: any) => (
-          <div key={block.id.toString()}>
+          <div style={{ overflow: "hidden" }} key={block.id.toString()}>
             <Block block={block} />{" "}
           </div>
         ))}
