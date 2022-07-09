@@ -38,8 +38,14 @@ const Index: NextPage = () => {
                 <a className="hover:underline">things i like</a>
               </Link>
               <br></br>
+
               <Link href="/trudy-painter/oakleys-and-i-stand-by-it">
                 <a className="hover:underline">OAKLEYS AND I STAND BY IT</a>
+              </Link>
+              <br></br>
+
+              <Link href="/trudy-painter/example-of-all-blocks">
+                <a className="hover:underline">example of all block</a>
               </Link>
             </div>
           </div>
