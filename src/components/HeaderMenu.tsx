@@ -15,23 +15,17 @@ export const HeaderMenu = () => {
     setUrlArr(urlArr);
   }, []);
 
-  // if (isLoading) return <p>Loading...</p>;
-  // if (!isLoading) return <div> {data?.id} </div>;
   return (
     <div className="px-20 pt-10">
       <Link href="/">
-        <a className="text-large font-semibold  hover:underline">Pollen</a>{" "}
+        <a className="text-large font-semibold  hover:underline">Pollen</a>
       </Link>
       {urlArr.map((url) => (
-        <span>
+        <span key={url}>
           {" / "}
-          <a
-            key={url}
-            className="text-large   hover:underline"
-            href={"/" + urlArr.slice(0, urlArr.indexOf(url) + 1).join("/")}
-          >
-            {url}
-          </a>
+          <Link href={"/" + url}>
+            <a className="text-large hover:underline"> {url}</a>
+          </Link>
         </span>
       ))}
     </div>
