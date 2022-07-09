@@ -16,7 +16,7 @@ export const HeaderMenu = () => {
   }, []);
 
   return (
-    <div className="px-20 pt-10">
+    <div className="w-10/12 pt-10 mx-auto">
       <Link href="/">
         <a className="text-large font-semibold  hover:underline">Pollen</a>
       </Link>

@@ -1,16 +1,29 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect, useRef } from "react";
 
 export const Block = (props: { block: any }) => {
+  const ref = useRef(undefined);
   const block = props.block;
-  const hasImage = block.image !== undefined;
+  const hasImage = block.image !== undefined && block.image !== null;
+  const [blockWidth, setBlockWidth] = useState(400);
 
-  //   console.log("🟡", block);
+  if (hasImage) {
+    console.log("🟡", block);
+  } else {
+  }
+
+  useEffect(() => {
+    console.log("🐸 hitting use effect");
+    if (ref.current) {
+      setBlockWidth(ref.current.offsetWidth);
+    }
+  }, [props]);
 
   return (
     <div
+      ref={ref}
       className="m-px border-2 overflow-hidden"
-      //   style={{ width: `${props.blockSize}px`, height: `${props.blockSize}px` }}
+      style={{ height: `${blockWidth}px` }}
     >
       {hasImage ? (
         <div>

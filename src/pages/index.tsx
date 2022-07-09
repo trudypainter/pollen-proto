@@ -19,8 +19,8 @@ const Index: NextPage = () => {
         <div className="w-full py-40 text-center">
           <div className="text-3xl font-bold mb-12">Pollen</div>
 
-          <div className="flex flex-wrap bg-red w-fit m-auto p-4 space-x-4">
-            <div className=" w-64 bg-gray-100 p-8 text-left">
+          <div className="flex flex-wrap bg-red w-11/12 m-auto justify-center">
+            <div className=" w-64 bg-gray-100 p-8 text-left m-4">
               <div className="text-l font-semibold">User Examples</div>
               <Link href="/trudy-painter">
                 <a className="hover:underline">Trudy Painter</a>
@@ -32,7 +32,7 @@ const Index: NextPage = () => {
               </Link>
             </div>
 
-            <div className=" w-64 bg-gray-100 p-8 text-left">
+            <div className=" w-64 bg-gray-100 p-8 text-left m-4">
               <div className="text-l font-semibold">Channel Examples</div>
               <Link href="/trudy-painter/things-i-like-eruhck1o7r0">
                 <a className="hover:underline">things i like</a>

@@ -26,7 +26,7 @@ export const UserPage = () => {
         setUserData(userObj);
         arena
           .user(username)
-          .channels()
+          .channels({ page: 1, per: 100 })
           .then((channelData: object) => {
             setChannelData(channelData);
             setLoading(false);

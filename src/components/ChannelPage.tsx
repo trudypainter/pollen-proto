@@ -19,7 +19,7 @@ export const ChannelPage = () => {
     console.log(channelSlug);
     arena
       .channel(channelSlug)
-      .get({ page: 1, per: 300 })
+      .get({ page: 1, per: 2000 })
       .then((chan: object) => {
         console.log(chan);
         setData(chan);
@@ -28,8 +28,6 @@ export const ChannelPage = () => {
       .catch((err: Error) => console.log(err));
   }, []);
 
-  // if (isLoading) return <p>Loading...</p>;
-  // if (!isLoading) return <div> {data?.id} </div>;
   return (
     <div>
       <HeaderMenu />

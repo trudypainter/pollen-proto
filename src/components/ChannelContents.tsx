@@ -10,18 +10,20 @@ import {
 } from "@chakra-ui/react";
 import { stringify } from "querystring";
 
+const INIT_COLS = 3;
+
 export const ChannelContents = (props: { contents: any; channelObj: any }) => {
   console.log(props.channelObj);
 
   //   console.log("🟢", props.contents);
-  const [gridCols, setGridCols] = useState(6);
+  const [gridCols, setGridCols] = useState(INIT_COLS);
 
   let dateObj = new Date(props.channelObj.created_at);
   let dateStr = dateObj.toLocaleDateString("en-US");
 
   return (
-    <div className="font-sans h-full">
-      <div className="w-full p-20">
+    <div className="font-sans w-10/12 mx-auto ">
+      <div className="w-full py-20">
         <div className="text-base">
           {`${dateStr} • Created by `}{" "}
           <a
@@ -33,13 +35,13 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         <div className="text-base">{props.channelObj.metadata.description}</div>
       </div>
 
-      <div className="w-full px-20 py-0 relative">
+      <div className="w-full px-1/12 py-0 relative">
         <div className="w-full py-10 flex justify-between sticky top-140">
           <div className="font-semibold text-xl">Contributions</div>
           <div className="w-48">
             <Slider
               aria-label="slider-ex-1"
-              defaultValue={6}
+              defaultValue={INIT_COLS}
               focusThumbOnChange={false}
               min={1}
               max={20}
@@ -67,7 +69,7 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
       </div> */}
 
       <div
-        className="mx-20 grid"
+        className="grid pb-20"
         style={{ gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))` }}
       >
         {props.contents.map((block: any) => (
