@@ -29,7 +29,7 @@ export const UserContents = (props: {
 
       <div className="w-full px-20">
         {props.channelsObj.map((channel: any) => (
-          <div className="my-4 ">
+          <div key={channel.id.toString()} className="my-4 ">
             <div className="mt-12 font-semibold text-4xl hover:underline">
               <a href={props.userObj.slug + "/" + channel.slug}>
                 {channel.title}
@@ -39,7 +39,7 @@ export const UserContents = (props: {
 
             <div className="flex flex-shrink-0 flex-row overflow-x-scroll">
               {channel.contents.map((block: any) => (
-                <div className="flex-shrink-0">
+                <div key={block.id.toString()} className="flex-shrink-0">
                   {block.image && (
                     <img
                       className="min-w-80 w-80 h-80 object-cover mr-4"

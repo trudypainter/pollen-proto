@@ -26,6 +26,7 @@ export const HeaderMenu = () => {
         <span>
           {" / "}
           <a
+            key={url}
             className="text-large   hover:underline"
             href={"/" + urlArr.slice(0, urlArr.indexOf(url) + 1).join("/")}
           >
