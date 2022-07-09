@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export const Block = (props: { block: any; blockSize: number }) => {
+export const Block = (props: { block: any }) => {
   const block = props.block;
   const hasImage = block.image !== undefined;
 
-  console.log("🟡", block);
+  //   console.log("🟡", block);
 
   return (
     <div
       className="m-px border-2 overflow-hidden"
-      style={{ width: `${props.blockSize}px`, height: `${props.blockSize}px` }}
+      //   style={{ width: `${props.blockSize}px`, height: `${props.blockSize}px` }}
     >
       {hasImage ? (
         <div>

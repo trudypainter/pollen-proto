@@ -8,17 +8,19 @@ import {
   SliderThumb,
   SliderMark,
 } from "@chakra-ui/react";
+import { stringify } from "querystring";
 
 export const ChannelContents = (props: { contents: any; channelObj: any }) => {
   console.log(props.channelObj);
 
   //   console.log("🟢", props.contents);
-  const [blockSize, setBlockSize] = useState(200);
+  const [gridCols, setGridCols] = useState(6);
+
   let dateObj = new Date(props.channelObj.created_at);
   let dateStr = dateObj.toLocaleDateString("en-US");
 
   return (
-    <div className="font-sans">
+    <div className="font-sans h-full">
       <div className="w-full p-20">
         <div className="text-base">
           {`${dateStr} • Created by `}{" "}
@@ -31,18 +33,21 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         <div className="text-base">{props.channelObj.metadata.description}</div>
       </div>
 
-      <div className="w-full px-20 py-0">
-        <div className="w-full py-10 flex justify-between">
+      <div className="w-full px-20 py-0 relative">
+        <div className="w-full py-10 flex justify-between sticky top-140">
           <div className="font-semibold text-xl">Contributions</div>
           <div className="w-48">
             <Slider
               aria-label="slider-ex-1"
-              defaultValue={200}
+              defaultValue={6}
               focusThumbOnChange={false}
-              min={12}
-              max={400}
-              step={4}
-              onChange={(val) => setBlockSize(val)}
+              min={1}
+              max={20}
+              step={1}
+              onChange={(val) => {
+                console.log(val);
+                setGridCols(val);
+              }}
             >
               <SliderTrack bg="gray.200">
                 <SliderFilledTrack bg="gray.300" />
@@ -52,10 +57,22 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap mx-20">
+
+      {/* <div className="flex flex-wrap mx-20">
         {props.contents.map((block: any) => (
           <div key={block.id.toString()}>
             <Block block={block} blockSize={blockSize} />{" "}
+          </div>
+        ))}
+      </div> */}
+
+      <div
+        className="mx-20 grid"
+        style={{ gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))` }}
+      >
+        {props.contents.map((block: any) => (
+          <div key={block.id.toString()}>
+            <Block block={block} />{" "}
           </div>
         ))}
       </div>
