@@ -1,13 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Block from "./Block";
-import {
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderMark,
-} from "@chakra-ui/react";
 import Router from "next/router";
 
 export const UserContents = (props: {
