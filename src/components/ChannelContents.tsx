@@ -54,12 +54,8 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
       </div>
       <div className="flex flex-wrap mx-20">
         {props.contents.map((block: any) => (
-          <div>
-            <Block
-              key={block.id.toString()}
-              block={block}
-              blockSize={blockSize}
-            />{" "}
+          <div key={block.id.toString()}>
+            <Block block={block} blockSize={blockSize} />{" "}
           </div>
         ))}
       </div>
