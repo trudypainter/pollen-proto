@@ -22,7 +22,7 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
   let dateObj = new Date(props.channelObj.created_at);
   let dateStr = dateObj.toLocaleDateString("en-US");
 
-  const calculateBlockWidth = (val: number): number => {
+  const calculateBlockWidth = (val: number) => {
     const blockHeight: number = (window.innerWidth * 10) / 12 / val - 2;
     console.log("vw in pixels", window.innerWidth, val, blockHeight);
 
