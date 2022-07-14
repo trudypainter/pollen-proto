@@ -1,24 +1,34 @@
 import Link from "next/link";
-import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import {
+  useEffect,
+  useState,
+  useLayoutEffect,
+  useRef,
+  MutableRefObject,
+} from "react";
 
-export const Block = (props: { block: any }) => {
+export const Block = (props: { block: any; blockHeight: number }) => {
   const block = props.block;
   const hasImage = block.image !== undefined && block.image !== null;
-  const [blockWidth, setBlockWidth] = useState(400);
+  const [blockWidth, setBlockWidth] = useState(380);
 
+  console.log(props.blockHeight);
   let displayText = "";
   if (!hasImage) {
-    console.log("🟡 no image", block);
+    // console.log("🟡 no image", block);
     if (block.base_class === "Channel") {
       displayText = block.title;
     } else {
-      console.log("🟢 got here");
+      // console.log("🟢 got here");
       displayText = block.content;
     }
   }
 
   return (
-    <div className="m-px border-2 h-full">
+    <div
+      className={"overflow-scroll m-px border-2"}
+      style={{ height: props.blockHeight, width: props.blockHeight }}
+    >
       {hasImage ? (
         <div className="h-full bg-black">
           <img className="w-full h-full " src={block.image.square.url} />{" "}
@@ -26,7 +36,7 @@ export const Block = (props: { block: any }) => {
       ) : (
         <div
           className={
-            "w-full h-full p-2 " +
+            "h-full w-full p-2 " +
             (block.base_class === "Channel"
               ? "bg-emerald-100 flex items-center justify-center"
               : "bg-gray-100")

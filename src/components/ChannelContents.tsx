@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Block from "./Block";
 import {
   Slider,
@@ -13,17 +13,25 @@ import { stringify } from "querystring";
 const INIT_COLS = 3;
 
 export const ChannelContents = (props: { contents: any; channelObj: any }) => {
-  console.log(props.channelObj);
+  // console.log(props.channelObj);
 
-  //   console.log("🟢", props.contents);
   const [gridCols, setGridCols] = useState(INIT_COLS);
-
+  const [blockHeight, setBlockHeight] = useState(
+    (window.innerWidth * 10) / 12 / INIT_COLS - 2
+  );
   let dateObj = new Date(props.channelObj.created_at);
   let dateStr = dateObj.toLocaleDateString("en-US");
 
+  const calculateBlockWidth = (val: number): number => {
+    const blockHeight: number = (window.innerWidth * 10) / 12 / val - 2;
+    console.log("vw in pixels", window.innerWidth, val, blockHeight);
+
+    setBlockHeight(blockHeight);
+  };
+
   return (
     <div className="font-sans w-10/12 mx-auto ">
-      <div className="w-full py-20">
+      <div className="w-full py-8">
         <div className="text-base">
           {`${dateStr} • Created by `}{" "}
           <a
@@ -35,8 +43,8 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         <div className="text-base">{props.channelObj.metadata.description}</div>
       </div>
 
-      <div className="w-full px-1/12 py-0 relative sticky top-0 bg-white">
-        <div className="w-full py-10 flex justify-between ">
+      <div className="w-full px-1/12  sticky top-0 bg-white">
+        <div className="w-full py-8 flex justify-between ">
           <div className="font-semibold text-xl">Contributions</div>
           <div className="w-48">
             <Slider
@@ -48,6 +56,7 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
               step={1}
               onChange={(val) => {
                 console.log(val);
+                calculateBlockWidth(val);
                 setGridCols(val);
               }}
             >
@@ -60,23 +69,15 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         </div>
       </div>
 
-      {/* <div className="flex flex-wrap mx-20">
-        {props.contents.map((block: any) => (
-          <div key={block.id.toString()}>
-            <Block block={block} blockSize={blockSize} />{" "}
-          </div>
-        ))}
-      </div> */}
-
       <div
-        className="grid pb-20"
+        className="grid auto-rows-min pb-20"
         style={{
           gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
         }}
       >
         {props.contents.map((block: any) => (
-          <div style={{ overflow: "hidden" }} key={block.id.toString()}>
-            <Block block={block} />{" "}
+          <div key={block.id.toString()}>
+            <Block block={block} blockHeight={blockHeight} />{" "}
           </div>
         ))}
       </div>
