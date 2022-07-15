@@ -12,7 +12,7 @@ import { stringify } from "querystring";
 
 const INIT_COLS = 3;
 
-export const ChannelContents = (props: { contents: any; channelObj: any }) => {
+export const ChannelContents = (props) => {
   // console.log(props.channelObj);
 
   const [gridCols, setGridCols] = useState(INIT_COLS);
@@ -22,15 +22,18 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
   let dateObj = new Date(props.channelObj.created_at);
   let dateStr = dateObj.toLocaleDateString("en-US");
 
-  const calculateBlockWidth = (val: number) => {
-    const blockHeight: number = (window.innerWidth * 10) / 12 / val - 2;
-    console.log("vw in pixels", window.innerWidth, val, blockHeight);
-
+  const calculateBlockWidth = (val) => {
+    const blockHeight = (window.innerWidth * 10) / 12 / val - 2;
     setBlockHeight(blockHeight);
   };
 
+  useEffect(() => {
+    window.addEventListener("resize", calculateBlockWidth(gridCols));
+  });
+
   return (
     <div className="font-sans w-10/12 mx-auto ">
+      {/*⭐️ HEADER README */}
       <div className="w-full py-8">
         <div className="text-base">
           {`${dateStr} • Created by `}{" "}
@@ -43,6 +46,7 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         <div className="text-base">{props.channelObj.metadata.description}</div>
       </div>
 
+      {/*⭐️ FILTER BAR */}
       <div className="w-full px-1/12  sticky top-0 bg-white">
         <div className="w-full py-8 flex justify-between ">
           <div className="font-semibold text-xl">Contributions</div>
@@ -69,13 +73,14 @@ export const ChannelContents = (props: { contents: any; channelObj: any }) => {
         </div>
       </div>
 
+      {/*⭐️ CONTRIBUTION GRID */}
       <div
         className="grid auto-rows-min pb-20"
         style={{
           gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
         }}
       >
-        {props.contents.map((block: any) => (
+        {props.contents.map((block) => (
           <div key={block.id.toString()}>
             <Block block={block} blockHeight={blockHeight} />{" "}
           </div>

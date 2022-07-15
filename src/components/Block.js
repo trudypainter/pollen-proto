@@ -7,7 +7,7 @@ import {
   MutableRefObject,
 } from "react";
 
-export const Block = (props: { block: any; blockHeight: number }) => {
+export const Block = (props) => {
   const block = props.block;
   const hasImage = block.image !== undefined && block.image !== null;
   const [blockWidth, setBlockWidth] = useState(380);
@@ -39,7 +39,7 @@ export const Block = (props: { block: any; blockHeight: number }) => {
             "h-full w-full p-2 " +
             (block.base_class === "Channel"
               ? "bg-emerald-100 flex items-center justify-center"
-              : "bg-gray-100")
+              : "bg-white")
           }
         >
           {displayText}
