@@ -3,16 +3,12 @@ import { useEffect, useState } from "react";
 import Block from "./Block";
 import Router from "next/router";
 
-export const UserContents = (props: {
-  username: string;
-  userObj: any;
-  channelsObj: any;
-}) => {
+export const UserContents = (props) => {
   console.log("🟡 userobj", props.userObj);
   console.log("⭐️ channels list", props.channelsObj);
 
   const publicChannels = props.channelsObj.filter(
-    (channel: any) => channel.status !== "private"
+    (channel) => channel.status !== "private"
   );
 
   return (
@@ -25,7 +21,7 @@ export const UserContents = (props: {
       </div>
 
       <div className="w-full ">
-        {publicChannels.map((channel: any) => (
+        {publicChannels.map((channel) => (
           <div key={channel.id.toString()} className="my-4 ">
             <div className="mt-12 font-semibold text-4xl hover:underline">
               <a href={props.userObj.slug + "/" + channel.slug}>
@@ -42,7 +38,7 @@ export const UserContents = (props: {
             {channel.contents !== null && (
               <div>
                 <div className="flex flex-shrink-0 flex-row overflow-x-scroll">
-                  {channel.contents.map((block: any) => (
+                  {channel.contents.map((block) => (
                     <div key={block.id.toString()} className="flex-shrink-0">
                       {block.image && (
                         <img

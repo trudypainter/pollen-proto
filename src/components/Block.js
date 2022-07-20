@@ -12,7 +12,7 @@ export const Block = (props) => {
   const hasImage = block.image !== undefined && block.image !== null;
   const [blockWidth, setBlockWidth] = useState(380);
 
-  console.log(props.blockHeight);
+  // console.log(props.blockHeight);
   let displayText = "";
   if (!hasImage) {
     // console.log("🟡 no image", block);
